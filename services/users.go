@@ -38,7 +38,7 @@ func (pr *user_service) AddData(prod *models.User) (*helpers.Response, error) {
 	respon := helpers.Response{
 		Status:  200,
 		IsError: false,
-		Result:  "Product berhasil ditambahkan",
+		Result:  "Berhasil mendaftar",
 	}
 
 	return &respon, nil
