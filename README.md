@@ -10,10 +10,12 @@
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v.13.3-blue.svg?style=rounded-square)](https://www.postgresql.org/)
 
 ## Feature
+- Authentication and Authorization
+- JWT Web Token
 - CRUD Product
 - CRUD Category
 - CRUD History
-- MVC Models
+- Solid Principle
 - Search Product Name
 - Sort Product Name, Category, Date Update, and Price order by ASC or DESC
 
@@ -28,7 +30,7 @@ https://golang.org/doc/install
 2. Clone the repository
 
 ```bash
-git clone git@github.com:wsaefulloh/rest-api-golang.git (go get)
+git clone git@github.com:wsaefulloh/go-solid-principle.git (go get)
 ```
 
 3. Run the app
