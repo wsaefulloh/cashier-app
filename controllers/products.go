@@ -76,6 +76,12 @@ func (pro *products) Add(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	cacheErr := db.Client().Del(db.Ctx, "product").Err()
+	if cacheErr != nil {
+		fmt.Println(cacheErr)
+		return
+	}
+
 	// w.Write([]byte("Data berhasil disimpan"))
 	result.Send(w)
 }
@@ -89,6 +95,12 @@ func (pro *products) Delete(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		// http.Error(w, err.Error(), http.StatusBadRequest)
 		helpers.Respone(w, err.Error(), 500, true)
+		return
+	}
+
+	cacheErr := db.Client().Del(db.Ctx, "product").Err()
+	if cacheErr != nil {
+		fmt.Println(cacheErr)
 		return
 	}
 
@@ -118,6 +130,12 @@ func (pro *products) Update(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		// http.Error(w, err.Error(), http.StatusBadRequest)
 		helpers.Respone(w, err.Error(), 500, true)
+		return
+	}
+
+	cacheErr := db.Client().Del(db.Ctx, "product").Err()
+	if cacheErr != nil {
+		fmt.Println(cacheErr)
 		return
 	}
 
