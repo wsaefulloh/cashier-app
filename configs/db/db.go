@@ -5,15 +5,36 @@ import (
 	"fmt"
 
 	_ "github.com/lib/pq"
+	"github.com/spf13/viper"
 )
 
-func New() (*sql.DB, error) {
-	host := "localhost"
-	user := "devops"
-	password := "abcd1234"
-	dbName := "Golang"
+type Config struct {
+	Host     string `mapstructure:"DB_HOST"`
+	User     string `mapstructure:"DB_USER"`
+	Password string `mapstructure:"DB_PASS"`
+	DBName   string `mapstructure:"DB_NAME"`
+}
 
-	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", host, user, password, dbName)
+func LoadConfig(path string) (config Config, err error) {
+	viper.AddConfigPath(path)
+	viper.SetConfigName("app")
+	viper.SetConfigType("env")
+
+	viper.AutomaticEnv()
+
+	err = viper.ReadInConfig()
+	if err != nil {
+		return
+	}
+
+	err = viper.Unmarshal(&config)
+	return
+}
+
+func New() (*sql.DB, error) {
+	setup, err := LoadConfig("/home/wahyu/go/src/github.com/wsaefulloh/go-solid-principle")
+
+	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", setup.Host, setup.User, setup.Password, setup.DBName)
 
 	db, err := connect(config)
 

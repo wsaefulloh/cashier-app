@@ -17,6 +17,8 @@ func New() *mux.Router {
 
 	//inisialisasi dbms
 	dbms, _ := db.New()
+	clientRedis := db.Client()
+	db.Connect(clientRedis)
 
 	UserRoute(mainRutes, dbms)
 	AuthRoute(mainRutes, dbms)

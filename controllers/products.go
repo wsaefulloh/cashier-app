@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/gorilla/mux"
 
+	"github.com/wsaefulloh/go-solid-principle/configs/db"
 	"github.com/wsaefulloh/go-solid-principle/helpers"
 	"github.com/wsaefulloh/go-solid-principle/interfaces"
 	"github.com/wsaefulloh/go-solid-principle/models"
@@ -33,8 +35,19 @@ func (pro *products) GetAll(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data.Send(w)
+	byteData, _ := json.Marshal(data.Result)
+
+	cacheErr := db.Client().Set(db.Ctx, "product", byteData, 30*time.Second).Err()
+	if cacheErr != nil {
+		fmt.Println(cacheErr)
+		return
+	}
+
+	json.Unmarshal(byteData, &data.Result)
+
 	// helpers.Respone(w, data, 200, false)
+
+	data.Send(w)
 }
 
 func (pro *products) Add(w http.ResponseWriter, r *http.Request) {
