@@ -50,6 +50,23 @@ func (pro *products) GetAll(w http.ResponseWriter, r *http.Request) {
 	data.Send(w)
 }
 
+func (pro *products) GetAllNoRedis(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Controll-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
+	data, err := pro.rp.FindAll()
+
+	if err != nil {
+		// http.Error(w, err.Error(), http.StatusBadRequest)
+		helpers.Respone(w, err.Error(), 500, true)
+		fmt.Println(err)
+		return
+	}
+
+	// helpers.Respone(w, data, 200, false)
+
+	data.Send(w)
+}
+
 func (pro *products) Add(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Controll-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")

@@ -18,6 +18,7 @@ func ProductRoute(r *mux.Router, db *sql.DB) {
 	route := r.PathPrefix("/products").Subrouter()
 	route.HandleFunc("/", cr.GetAll).Methods(http.MethodGet)
 	route.HandleFunc("", cr.GetAll).Methods(http.MethodGet)
+	route.HandleFunc("/noredis/", cr.GetAllNoRedis).Methods(http.MethodGet)
 	route.HandleFunc("/date/desc", cr.GetbyDateDESC).Methods(http.MethodGet)
 	route.HandleFunc("/date/asc", cr.GetbyDateASC).Methods(http.MethodGet)
 	route.HandleFunc("/price/desc", cr.GetbyPriceDESC).Methods(http.MethodGet)
