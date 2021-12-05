@@ -9,6 +9,10 @@
 [![Golang](https://img.shields.io/badge/Golang-4.x-blue.svg?style=rounded-square)](https://golang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v.13.3-blue.svg?style=rounded-square)](https://www.postgresql.org/)
 
+## Architecture
+
+<p align="center"><img src="https://res.cloudinary.com/dyli6i0pw/image/upload/v1638730616/Arsitektur_Backend_Golang_i0tpl0.png" width="800px" alt="Golang.jpg" /></p>
+
 ## Feature
 - Authentication and Authorization
 - JWT Web Token
