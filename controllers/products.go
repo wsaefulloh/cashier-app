@@ -27,12 +27,18 @@ func (pro *products) GetAll(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Controll-Allow-Origin", "*")
 	w.Header().Set("Content-Type", "application/json")
 	data, err := pro.rp.FindAll()
+	// datanoredis, err := pro.rp.FindAll()
 
 	if err != nil {
 		// http.Error(w, err.Error(), http.StatusBadRequest)
 		helpers.Respone(w, err.Error(), 500, true)
 		fmt.Println(err)
 		return
+	}
+
+	dataredis := &helpers.Response{
+		Status:  200,
+		IsError: false,
 	}
 
 	byteData, _ := json.Marshal(data.Result)
@@ -43,11 +49,11 @@ func (pro *products) GetAll(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	json.Unmarshal(byteData, &data.Result)
+	json.Unmarshal(byteData, &dataredis.Result)
 
 	// helpers.Respone(w, data, 200, false)
 
-	data.Send(w)
+	dataredis.Send(w)
 }
 
 func (pro *products) GetAllNoRedis(w http.ResponseWriter, r *http.Request) {
