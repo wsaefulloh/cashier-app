@@ -34,7 +34,7 @@ https://golang.org/doc/install
 2. Clone the repository
 
 ```bash
-git clone git@github.com:wsaefulloh/go-solid-principle.git (go get)
+git clone git@github.com:wsaefulloh/cashier-app.git (go get)
 ```
 
 3. Run the app
@@ -46,7 +46,7 @@ go run main.go
 4. You are all set!
 
 ```bash
-View the website at: http://localhost:9000
+View the website at: http://localhost:8080
 ```
 
 ## End Point
