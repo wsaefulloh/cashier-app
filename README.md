@@ -37,7 +37,7 @@ https://golang.org/doc/install
 2. Clone the repository
 
 ```bash
-git clone git@github.com:wsaefulloh/cashier-app.git (go get)
+git clone git@github.com:wsaefulloh/cashier-backend.git (go get)
 ```
 
 3. Run the app
