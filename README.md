@@ -1,4 +1,4 @@
-<h1 align="center">RESTful API with Golang</h1>
+<h1 align="center">Cashier App Backend</h1>
 <p align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/2560px-Go_Logo_Blue.svg.png" width="400px" alt="Golang.jpg" /></p>
 <p align="center">
     <a href="https://golang.org/" target="blank">More about Golang</a>
@@ -8,6 +8,9 @@
 
 [![Golang](https://img.shields.io/badge/Golang-4.x-blue.svg?style=rounded-square)](https://golang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-v.13.3-blue.svg?style=rounded-square)](https://www.postgresql.org/)
+
+## Description
+This backend application is used by the user to record incoming orders and manage products. In this application, users can display products, add products, delete products, edit products, and calculate the total price of an order. This application is built with Golang using the gorilla/mux package for routing. The databases used in this application are PostgreSQL and Redis for the caching process.
 
 ## Architecture
 
