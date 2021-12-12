@@ -15,7 +15,7 @@ This backend application is used by the user to record incoming orders and manag
 
 ## Architecture
 
-<p align="center"><img src="https://res.cloudinary.com/dyli6i0pw/image/upload/v1638731396/Arsitektur_Backend_Golang_jxwl2r.png" width="700px" alt="Golang.jpg" /></p>
+<p align="center"><img src="https://res.cloudinary.com/dyli6i0pw/image/upload/v1639337628/Arsitektur_Backend_Golang2_muwlhk.png" width="700px" alt="Golang.jpg" /></p>
 
 ## Feature
 - Authentication and Authorization
