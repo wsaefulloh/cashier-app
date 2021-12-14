@@ -41,25 +41,35 @@ https://golang.org/doc/install
 git clone git@github.com:wsaefulloh/cashier-backend.git (go get)
 ```
 
-3. Build the app
+3. Add .env file at root folder project
+
+   ```sh
+   DB_HOST=your_db_host
+   DB_USER=your_db_user
+   DB_PASS=your_db_pass
+   DB_NAME=your_dbname
+   REDIS_HOST=your_redis_host
+   ```
+
+4. Build the app
 
 ```bash
 go build
 ```
 
-3. Permission app
+5. Permission app
 
 ```bash
 chmod +x ./go-solid-principle
 ```
 
-4. Run the app
+6. Run the app
 
 ```bash
 ./go-solid-principle serve
 ```
 
-5. You are all set!
+7. You are all set!
 
 ```bash
 View the website at: http://localhost:8080
