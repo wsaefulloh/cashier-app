@@ -42,14 +42,14 @@ git clone git@github.com:wsaefulloh/cashier-backend.git (go get)
 ```
 
 3. Add .env file at root folder project
-
-   ```sh
-   DB_HOST=your_db_host
-   DB_USER=your_db_user
-   DB_PASS=your_db_pass
-   DB_NAME=your_dbname
-   REDIS_HOST=your_redis_host
-   ```
+ 
+```sh
+DB_HOST=your_db_host
+DB_USER=your_db_user
+DB_PASS=your_db_pass
+DB_NAME=your_dbname
+REDIS_HOST=your_redis_host
+```
 
 4. Build the app
 
