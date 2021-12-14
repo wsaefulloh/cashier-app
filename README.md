@@ -47,10 +47,16 @@ git clone git@github.com:wsaefulloh/cashier-backend.git (go get)
 go build
 ```
 
+3. Permission app
+
+```bash
+chmod +x ./go-solid-principle
+```
+
 4. Run the app
 
 ```bash
-go run main.go
+./go-solid-principle serve
 ```
 
 5. You are all set!
