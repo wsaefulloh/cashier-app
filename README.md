@@ -41,13 +41,19 @@ https://golang.org/doc/install
 git clone git@github.com:wsaefulloh/cashier-backend.git (go get)
 ```
 
-3. Run the app
+3. Build the app
+
+```bash
+go build
+```
+
+4. Run the app
 
 ```bash
 go run main.go
 ```
 
-4. You are all set!
+5. You are all set!
 
 ```bash
 View the website at: http://localhost:8080
