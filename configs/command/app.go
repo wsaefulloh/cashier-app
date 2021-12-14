@@ -17,8 +17,8 @@ var serveCmd = &cobra.Command{
 func serve(cmd *cobra.Command, args []string) error {
 	mainRutes := routers.New()
 
-	fmt.Println("Server running on port 9000")
-	err := http.ListenAndServe(":9000", mainRutes)
+	fmt.Println("Server running on port 8080")
+	err := http.ListenAndServe(":8080", mainRutes)
 	if err != nil {
 		return err
 	}

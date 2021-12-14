@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/golang-jwt/jwt"
@@ -24,10 +25,15 @@ func NewToken(username, role string) *claims {
 	}
 }
 
-func (c *claims) Create() (string, error) {
+func (c *claims) Create() (sign string, err error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, c)
 
-	return token.SignedString(mySigninKey)
+	sign, err = token.SignedString(mySigninKey)
+
+	if err != nil {
+		return
+	}
+	return
 }
 
 func CheckToken(token string) (bool, string) {
@@ -36,7 +42,8 @@ func CheckToken(token string) (bool, string) {
 	})
 
 	if err != nil {
-		return false, ""
+		fmt.Print(err.Error())
+		return false, err.Error()
 	}
 
 	claims := tokens.Claims.(*claims)

@@ -3,42 +3,26 @@ package db
 import (
 	"database/sql"
 	"fmt"
+	"log"
+	"os"
 
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
-// type Config struct {
-// 	Host     string `mapstructure:"DB_HOST"`
-// 	User     string `mapstructure:"DB_USER"`
-// 	Password string `mapstructure:"DB_PASS"`
-// 	DBName   string `mapstructure:"DB_NAME"`
-// }
-
-// func LoadConfig(path string) (config Config, err error) {
-// 	viper.AddConfigPath(path)
-// 	viper.SetConfigName("app")
-// 	viper.SetConfigType("env")
-
-// 	viper.AutomaticEnv()
-
-// 	err = viper.ReadInConfig()
-// 	if err != nil {
-// 		return
-// 	}
-
-// 	err = viper.Unmarshal(&config)
-// 	return
-// }
-
 func New() (*sql.DB, error) {
-	// setup, err := LoadConfig("/home/wahyu/go/src/github.com/wsaefulloh/go-solid-principle")
-	DB_HOST := "database"
-	DB_USER := "devops"
-	DB_PASS := "abcd1234"
-	DB_NAME := "golang"
-	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", DB_HOST, DB_USER, DB_PASS, DB_NAME)
+	err := godotenv.Load(".env")
 
-	// config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", setup.Host, setup.User, setup.Password, setup.DBName)
+	if err != nil {
+		log.Fatalf("Error on loading .env file")
+	}
+
+	host := os.Getenv("DB_HOST")
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASS")
+	dbname := os.Getenv("DB_NAME")
+
+	config := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", host, user, password, dbname)
 
 	db, err := connect(config)
 

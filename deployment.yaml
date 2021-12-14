@@ -1,0 +1,90 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: wahyu
+
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: letsencrypt-gorest
+  namespace: wahyu
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: saefuuloh@gmail.com
+    privateKeySecretRef:
+      name: letsencrypt-gorest
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
+
+
+###########
+# backend #
+###########
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-golang
+  namespace: wahyu
+  labels:
+    name: gorest
+spec:
+  selector:
+    matchLabels:
+      name: gorest-pod
+  template:
+    metadata:
+      name: backend-golang
+      labels:
+        name: gorest-pod
+    spec:
+      containers:
+        - name: gorest
+          image: wsaefulloh/gorest:2
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gorest-service
+  namespace: wahyu
+spec:
+  selector:
+    name: gorest-pod
+  ports:
+    - port: 8080
+      targetPort: 8080
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gorest-ingress
+  namespace: wahyu
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/issuer: "letsencrypt-gorest"
+spec:
+  tls:
+    - hosts:
+        - gorest.blanjanow.online
+      secretName: secret-gorest-tls
+  rules:
+    - host: gorest.blanjanow.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gorest-service
+                port:
+                  number: 8080

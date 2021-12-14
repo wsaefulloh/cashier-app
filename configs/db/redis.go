@@ -3,13 +3,21 @@ package db
 import (
 	"context"
 	"fmt"
+	"log"
+	"os"
 
 	"github.com/go-redis/redis/v8"
+	"github.com/joho/godotenv"
 )
 
 func Client() *redis.Client {
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatalf("Error on loading .env file")
+	}
 	client := redis.NewClient(&redis.Options{
-		Addr: "redis:6379",
+		Addr: os.Getenv("REDIS_HOST"),
 	})
 
 	return client
